@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringCalculatorTest {
 
@@ -36,5 +37,16 @@ public class StringCalculatorTest {
         int result = calculator.add(text);
 
         assertThat(result).isEqualTo(6);
+    }
+
+    @Test
+    @DisplayName("구분자로 분리한 값이 숫자가 아닌 경우 IllegalArgumentException 발생")
+    void add_non_numeric_exception() {
+        StringCalculator calculator = new StringCalculator();
+        String text = "1,a:3";
+
+        assertThatThrownBy(() -> calculator.add(text))
+                .isExactlyInstanceOf(IllegalArgumentException.class);
+
     }
 }
