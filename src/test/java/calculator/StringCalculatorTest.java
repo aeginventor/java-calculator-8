@@ -1,5 +1,6 @@
 package calculator;
 
+import net.bytebuddy.build.ToStringPlugin;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,6 +22,17 @@ public class StringCalculatorTest {
     void add_comma_or_colon_separator() {
         StringCalculator calculator = new StringCalculator();
         String text = "1,2:3";
+
+        int result = calculator.add(text);
+
+        assertThat(result).isEqualTo(6);
+    }
+
+    @Test
+    @DisplayName("커스텀 구분자를 사용하여 분리한 숫자의 합 반환")
+    void add_custom_delimiter() {
+        StringCalculator calculator = new StringCalculator();
+        String text = "//;\n1;2;3";
 
         int result = calculator.add(text);
 
