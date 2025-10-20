@@ -34,16 +34,20 @@ public class StringCalculator {
         return text.split(delimiter);
     }
 
-    private static int sum(String[] numbers) {
+    private int sum(String[] numbers) {
         int sum = 0;
         for (String number : numbers) {
-            try {
-                sum += Integer.parseInt(number);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("입력 문자열에 숫자가 아닌 값이 포함되어 있습니다.");
-            }
+            sum += toInt(number);
         }
 
         return sum;
+    }
+
+    private int toInt(String number) {
+        try {
+            return Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("입력 문자열에 숫자가 아닌 값이 포함되어 있습니다.");
+        }
     }
 }
