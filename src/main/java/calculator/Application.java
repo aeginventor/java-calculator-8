@@ -1,12 +1,11 @@
 package calculator;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.NoSuchElementException;
 
 public class Application {
     public static void main(String[] args) {
         System.out.println("덧셈할 문자열을 입력해 주세요.");
-        String input = readCalculatorInput();
+        String input = Console.readLine();
 
         try {
             StringCalculator calculator = new StringCalculator();
@@ -15,21 +14,6 @@ public class Application {
             System.out.println("결과 : " + result);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-        }
-    }
-
-    private static String readCalculatorInput() {
-        try {
-            String input = Console.readLine();
-
-            if (input.startsWith("//")) {
-                String numbers = Console.readLine();
-                input = input + "\n" + numbers;
-            }
-
-            return input;
-        } catch (NoSuchElementException e) {
-            return "";
         }
     }
 }
