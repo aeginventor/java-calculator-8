@@ -15,4 +15,15 @@ public class StringCalculatorTest {
         assertThat(calculator.add(null)).isEqualTo(0);
         assertThat(calculator.add("")).isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("쉼표 또는 콜론 구분자로 분리한 숫자의 합 반환")
+    void add_comma_or_colon_separator() {
+        StringCalculator calculator = new StringCalculator();
+        String text = "1,2:3";
+
+        int result = calculator.add(text);
+
+        assertThat(result).isEqualTo(6);
+    }
 }
