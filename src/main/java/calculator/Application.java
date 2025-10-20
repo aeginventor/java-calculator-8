@@ -5,13 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class Application {
     public static void main(String[] args) {
         System.out.println("덧셈할 문자열을 입력해 주세요.");
-        String input = Console.readLine();
-
-        // [FIX] 커스텀 구분자일 경우 한 줄 더 읽어오기
-        if (input.startsWith("//")) {
-            String numbers = Console.readLine();
-            input = input + "\n" + numbers;
-        }
+        String input = readCalculatorInput();
 
         try {
             StringCalculator calculator = new StringCalculator();
@@ -21,5 +15,16 @@ public class Application {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private static String readCalculatorInput() {
+        String input = Console.readLine();
+
+        if (input.startsWith("//")) {
+            String numbers = Console.readLine();
+            input = input + "\n" + numbers;
+        }
+
+        return input;
     }
 }
