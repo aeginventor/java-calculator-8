@@ -7,18 +7,29 @@ public class StringCalculator {
             return 0;
         }
 
+        String[] numbers = split(text);
+
+        return sum(numbers);
+    }
+
+    private String[] split(String text) {
         String delimiter = "[,:]";
-        String textToParse = text;
 
         if (text.startsWith("//")) {
+            String textToParse;
+
             String[] parts = text.split("\n", 2);
 
             delimiter = parts[0].substring(2);
             textToParse = parts[1];
+
+            return textToParse.split(delimiter);
         }
 
-        String[] numbers = textToParse.split(delimiter);
+        return text.split(delimiter);
+    }
 
+    private static int sum(String[] numbers) {
         int sum = 0;
         for (String number : numbers) {
             sum += Integer.parseInt(number);
