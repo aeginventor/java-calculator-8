@@ -45,18 +45,18 @@ class ApplicationTest extends NsTest {
     @Test
     @DisplayName("숫자가 아닌 값 입력 시 IllegalArgumentException 발생")
     void add_non_numeric_exception() {
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("1,a:3"))
-                        .isExactlyInstanceOf(IllegalArgumentException.class)
-        );
+        assertSimpleTest(() -> {
+            run("1,a:3");
+            assertThat(output()).contains("입력 문자열에 숫자가 아닌 값이 포함되어 있습니다.");
+        });
     }
 
     @Test
     @DisplayName("음수가 포함된 경우 IllegalArgumentException 발생")
     void add_negative_number_exception() {
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("-1,2,3"))
-                        .isExactlyInstanceOf(IllegalArgumentException.class)
-        );
+        assertSimpleTest(() -> {
+            run("-1,2,3");
+            assertThat(output()).contains("입력된 숫자 중 음수가 있습니다.");
+        });
     }
 }
