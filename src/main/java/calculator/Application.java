@@ -7,6 +7,12 @@ public class Application {
         System.out.println("덧셈할 문자열을 입력해 주세요.");
         String input = Console.readLine();
 
+        // [FIX] 커스텀 구분자일 경우 한 줄 더 읽어오기
+        if (input.startsWith("//")) {
+            String numbers = Console.readLine();
+            input = input + "\n" + numbers;
+        }
+
         try {
             StringCalculator calculator = new StringCalculator();
             int result = calculator.add(input);
