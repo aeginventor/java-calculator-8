@@ -13,19 +13,24 @@ public class StringCalculator {
     }
 
     private String[] split(String text) {
-        String delimiter = "[,:]";
-
         if (text.startsWith("//")) {
-            String textToParse;
-
-            String[] parts = text.split("\n", 2);
-
-            delimiter = parts[0].substring(2);
-            textToParse = parts[1];
-
-            return textToParse.split(delimiter);
+            return splitByCustomDelimiter(text);
         }
 
+        return splitByDefaultDelimiter(text);
+    }
+
+    private String[] splitByCustomDelimiter(String text) {
+        String[] parts = text.split("\n", 2);
+
+        String delimiter = parts[0].substring(2);
+        String textToParse = parts[1];
+
+        return textToParse.split(delimiter);
+    }
+
+    private String[] splitByDefaultDelimiter(String text) {
+        String delimiter = "[,:]";
         return text.split(delimiter);
     }
 
