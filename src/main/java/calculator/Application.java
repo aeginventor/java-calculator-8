@@ -1,6 +1,7 @@
 package calculator;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.NoSuchElementException;
 
 public class Application {
     public static void main(String[] args) {
@@ -18,13 +19,17 @@ public class Application {
     }
 
     private static String readCalculatorInput() {
-        String input = Console.readLine();
+        try {
+            String input = Console.readLine();
 
-        if (input.startsWith("//")) {
-            String numbers = Console.readLine();
-            input = input + "\n" + numbers;
+            if (input.startsWith("//")) {
+                String numbers = Console.readLine();
+                input = input + "\n" + numbers;
+            }
+
+            return input;
+        } catch (NoSuchElementException e) {
+            return "";
         }
-
-        return input;
     }
 }
