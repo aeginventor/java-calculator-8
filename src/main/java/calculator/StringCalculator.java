@@ -43,9 +43,16 @@ public class StringCalculator {
         return sum;
     }
 
-    private int toInt(String number) {
+    private int toInt(String numberText) {
         try {
-            return Integer.parseInt(number);
+            int number = Integer.parseInt(numberText);
+
+            if (number < 0) {
+                throw new IllegalArgumentException("입력된 숫자 중 음수가 있습니다.");
+            }
+
+            return number;
+
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("입력 문자열에 숫자가 아닌 값이 포함되어 있습니다.");
         }

@@ -49,4 +49,15 @@ public class StringCalculatorTest {
                 .isExactlyInstanceOf(IllegalArgumentException.class);
 
     }
+
+    @Test
+    @DisplayName("음수가 포함된 경우 IllegalArgumentException 발생")
+    void add_negative_number_exception() {
+        StringCalculator calculator = new StringCalculator();
+        String text = "1,-2:3";
+
+        assertThatThrownBy(() -> calculator.add(text))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
